@@ -62,7 +62,7 @@
 			<folder>tables</folder>
 			<folder>views</folder>
 		</files>
-		<languages folder="admin">
+		<languages folder="administrator">
 			<language tag="en-GB">language/en-GB.com_properties.ini</language>
 			<language tag="en-GB">language/en-GB.com_properties.sys.ini</language>
 		</languages>

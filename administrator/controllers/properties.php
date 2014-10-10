@@ -1,22 +1,22 @@
 <?php
 /**
- * @package     Joomla.Administrator
- * @subpackage  com_weblinks
+ * @package     Realeza
+ * @subpackage  com_properties
  *
- * @copyright   Copyright (C) 2005 - 2014 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2014 Emtags, All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die;
 
 /**
- * Weblinks list controller class.
+ * Properties list controller class.
  *
- * @package     Joomla.Administrator
- * @subpackage  com_weblinks
- * @since       1.6
+ * @package     Realeza
+ * @subpackage  com_properties
+ * @since       1.0
  */
-class WeblinksControllerWeblinks extends JControllerAdmin
+class PropertiesControllerProperties extends JControllerAdmin
 {
 	/**
 	 * Proxy for getModel
@@ -27,9 +27,9 @@ class WeblinksControllerWeblinks extends JControllerAdmin
 	 *
 	 * @return  object  The model.
 	 *
-	 * @since   1.6
+	 * @since   1.0
 	 */
-	public function getModel($name = 'Weblink', $prefix = 'WeblinksModel', $config = array('ignore_request' => true))
+	public function getModel($name = 'Property', $prefix = 'PropertiesModel', $config = array('ignore_request' => true))
 	{
 		$model = parent::getModel($name, $prefix, $config);
 
@@ -44,7 +44,7 @@ class WeblinksControllerWeblinks extends JControllerAdmin
 	 *
 	 * @return  void
 	 *
-	 * @since   3.1
+	 * @since   1.0
 	 */
 	protected function postDeleteHook(JModelLegacy $model, $ids = null)
 	{

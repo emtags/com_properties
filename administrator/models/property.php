@@ -1,39 +1,39 @@
 <?php
 /**
- * @package     Joomla.Administrator
- * @subpackage  com_weblinks
+ * @package     Realeza
+ * @subpackage  com_properties
  *
- * @copyright   Copyright (C) 2005 - 2014 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2014 Emtags, All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die;
 
 /**
- * Weblinks model.
+ * Properties model.
  *
- * @package     Joomla.Administrator
- * @subpackage  com_weblinks
- * @since       1.5
+ * @package     Emtags
+ * @subpackage  com_properties
+ * @since       1.0
  */
-class WeblinksModelWeblink extends JModelAdmin
+class PropertiesModelProperty extends JModelAdmin
 {
 
 	/**
 	 * The type alias for this content type.
 	 *
 	 * @var      string
-	 * @since    3.2
+	 * @since    1.0
 	 */
-	public $typeAlias = 'com_weblinks.weblink';
+	public $typeAlias = 'com_properties.property';
 
 	/**
 	 * The prefix to use with controller messages.
 	 *
 	 * @var    string
-	 * @since  1.6
+	 * @since  1.0
 	 */
-	protected $text_prefix = 'COM_WEBLINKS';
+	protected $text_prefix = 'COM_PROPERTY';
 
 	/**
 	 * Method to test whether a record can be deleted.
@@ -42,7 +42,7 @@ class WeblinksModelWeblink extends JModelAdmin
 	 *
 	 * @return  boolean  True if allowed to delete the record. Defaults to the permission for the component.
 	 *
-	 * @since   1.6
+	 * @since   1.0
 	 */
 	protected function canDelete($record)
 	{
@@ -56,7 +56,7 @@ class WeblinksModelWeblink extends JModelAdmin
 
 			if ($record->catid)
 			{
-				return $user->authorise('core.delete', 'com_weblinks.category.'.(int) $record->catid);
+				return $user->authorise('core.delete', 'com_properties.category.'.(int) $record->catid);
 			}
 			else
 			{
@@ -72,7 +72,7 @@ class WeblinksModelWeblink extends JModelAdmin
 	 *
 	 * @return  boolean  True if allowed to change the state of the record. Defaults to the permission for the component.
 	 *
-	 * @since   1.6
+	 * @since   1.0
 	 */
 	protected function canEditState($record)
 	{
@@ -80,7 +80,7 @@ class WeblinksModelWeblink extends JModelAdmin
 
 		if (!empty($record->catid))
 		{
-			return $user->authorise('core.edit.state', 'com_weblinks.category.'.(int) $record->catid);
+			return $user->authorise('core.edit.state', 'com_properties.category.'.(int) $record->catid);
 		}
 		else
 		{
@@ -97,9 +97,9 @@ class WeblinksModelWeblink extends JModelAdmin
 	 *
 	 * @return  JTable  A JTable object
 	 *
-	 * @since   1.6
+	 * @since   1.0
 	 */
-	public function getTable($type = 'Weblink', $prefix = 'WeblinksTable', $config = array())
+	public function getTable($type = 'Property', $prefix = 'PropertiesTable', $config = array())
 	{
 		return JTable::getInstance($type, $prefix, $config);
 	}
@@ -112,12 +112,12 @@ class WeblinksModelWeblink extends JModelAdmin
 	 *
 	 * @return  mixed  A JForm object on success, false on failure
 	 *
-	 * @since   1.6
+	 * @since   1.0
 	 */
 	public function getForm($data = array(), $loadData = true)
 	{
 		// Get the form.
-		$form = $this->loadForm('com_weblinks.weblink', 'weblink', array('control' => 'jform', 'load_data' => $loadData));
+		$form = $this->loadForm('com_properties.property', 'property', array('control' => 'jform', 'load_data' => $loadData));
 
 		if (empty($form))
 		{
@@ -125,7 +125,7 @@ class WeblinksModelWeblink extends JModelAdmin
 		}
 
 		// Determine correct permissions to check.
-		if ($this->getState('weblink.id'))
+		if ($this->getState('property.id'))
 		{
 			// Existing record. Can only edit in selected categories.
 			$form->setFieldAttribute('catid', 'action', 'core.edit');
@@ -161,26 +161,26 @@ class WeblinksModelWeblink extends JModelAdmin
 	 *
 	 * @return  array  The default data is an empty array.
 	 *
-	 * @since   1.6
+	 * @since   1.0
 	 */
 	protected function loadFormData()
 	{
 		// Check the session for previously entered form data.
-		$data = JFactory::getApplication()->getUserState('com_weblinks.edit.weblink.data', array());
+		$data = JFactory::getApplication()->getUserState('com_properties.edit.property.data', array());
 
 		if (empty($data))
 		{
 			$data = $this->getItem();
 
 			// Prime some default values.
-			if ($this->getState('weblink.id') == 0)
+			if ($this->getState('property.id') == 0)
 			{
 				$app = JFactory::getApplication();
-				$data->set('catid', $app->input->get('catid', $app->getUserState('com_weblinks.weblinks.filter.category_id'), 'int'));
+				$data->set('catid', $app->input->get('catid', $app->getUserState('com_properties.properties.filter.category_id'), 'int'));
 			}
 		}
 
-		$this->preprocessData('com_weblinks.weblink', $data);
+		$this->preprocessData('com_properties.property', $data);
 
 		return $data;
 	}
@@ -192,7 +192,7 @@ class WeblinksModelWeblink extends JModelAdmin
 	 *
 	 * @return  mixed  Object on success, false on failure.
 	 *
-	 * @since   1.6
+	 * @since   1.0
 	 */
 	public function getItem($pk = null)
 	{
@@ -211,7 +211,7 @@ class WeblinksModelWeblink extends JModelAdmin
 			if (!empty($item->id))
 			{
 				$item->tags = new JHelperTags;
-				$item->tags->getTagIds($item->id, 'com_weblinks.weblink');
+				$item->tags->getTagIds($item->id, 'com_properties.property');
 				$item->metadata['tags'] = $item->tags;
 			}
 		}
@@ -226,7 +226,7 @@ class WeblinksModelWeblink extends JModelAdmin
 	 *
 	 * @return  void
 	 *
-	 * @since   1.6
+	 * @since   1.0
 	 */
 	protected function prepareTable($table)
 	{
@@ -251,7 +251,7 @@ class WeblinksModelWeblink extends JModelAdmin
 				$db = JFactory::getDbo();
 				$query = $db->getQuery(true)
 					->select('MAX(ordering)')
-					->from($db->quoteName('#__weblinks'));
+					->from($db->quoteName('#__properties'));
 
 				$db->setQuery($query);
 				$max = $db->loadResult();
@@ -277,7 +277,7 @@ class WeblinksModelWeblink extends JModelAdmin
 	 *
 	 * @return  array  An array of conditions to add to ordering queries.
 	 *
-	 * @since   1.6
+	 * @since   1.0
 	 */
 	protected function getReorderConditions($table)
 	{
@@ -294,7 +294,7 @@ class WeblinksModelWeblink extends JModelAdmin
 	 *
 	 * @return  boolean  True on success.
 	 *
-	 * @since	3.1
+	 * @since	1.0
 	 */
 	public function save($data)
 	{
@@ -321,7 +321,7 @@ class WeblinksModelWeblink extends JModelAdmin
 	 *
 	 * @return  array  Contains the modified title and alias.
 	 *
-	 * @since   3.1
+	 * @since   1.0
 	 */
 	protected function generateNewTitle($category_id, $alias, $name)
 	{

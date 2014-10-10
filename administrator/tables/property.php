@@ -1,22 +1,22 @@
 <?php
 /**
- * @package     Joomla.Administrator
- * @subpackage  com_weblinks
+ * @package     Realeza
+ * @subpackage  com_properties
  *
- * @copyright   Copyright (C) 2005 - 2014 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2014 Emtags, All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die;
 
 /**
- * Weblink Table class
+ * Property Table class
  *
- * @package     Joomla.Administrator
- * @subpackage  com_weblinks
- * @since       1.5
+ * @package     Emtags
+ * @subpackage  com_properties
+ * @since       1.0
  */
-class WeblinksTableWeblink extends JTable
+class PropertiesTableProperty extends JTable
 {
 	/**
 	 * Constructor
@@ -25,10 +25,10 @@ class WeblinksTableWeblink extends JTable
 	 */
 	public function __construct(&$db)
 	{
-		parent::__construct('#__weblinks', 'id', $db);
+		parent::__construct('#__properties', 'id', $db);
 
-		JTableObserverTags::createObserver($this, array('typeAlias' => 'com_weblinks.weblink'));
-		JTableObserverContenthistory::createObserver($this, array('typeAlias' => 'com_weblinks.weblink'));
+		JTableObserverTags::createObserver($this, array('typeAlias' => 'com_properties.property'));
+		JTableObserverContenthistory::createObserver($this, array('typeAlias' => 'com_properties.property'));
 	}
 
 	/**
@@ -40,7 +40,7 @@ class WeblinksTableWeblink extends JTable
 	 * @return  boolean  True on success.
 	 *
 	 * @see     JTable:bind
-	 * @since   1.5
+	 * @since   1.0
 	 */
 	public function bind($array, $ignore = '')
 	{
@@ -69,11 +69,11 @@ class WeblinksTableWeblink extends JTable
 	}
 
 	/**
-	 * Overload the store method for the Weblinks table.
+	 * Overload the store method for the Properties table.
 	 *
 	 * @param   boolean	Toggle whether null values should be updated.
 	 * @return  boolean  True on success, false on failure.
-	 * @since   1.6
+	 * @since   1.0
 	 */
 	public function store($updateNulls = false)
 	{
@@ -88,7 +88,7 @@ class WeblinksTableWeblink extends JTable
 		}
 		else
 		{
-			// New weblink. A weblink created and created_by field can be set by the user,
+			// New property. A property created and created_by field can be set by the user,
 			// so we don't touch either of these if they are set.
 			if (!(int) $this->created)
 			{
@@ -113,11 +113,11 @@ class WeblinksTableWeblink extends JTable
 		}
 
 		// Verify that the alias is unique
-		$table = JTable::getInstance('Weblink', 'WeblinksTable');
+		$table = JTable::getInstance('Property', 'PropertiesTable');
 
 		if ($table->load(array('alias' => $this->alias, 'catid' => $this->catid)) && ($table->id != $this->id || $this->id == 0))
 		{
-			$this->setError(JText::_('COM_WEBLINKS_ERROR_UNIQUE_ALIAS'));
+			$this->setError(JText::_('COM_PROPERTIES_ERROR_UNIQUE_ALIAS'));
 			return false;
 		}
 
@@ -136,21 +136,21 @@ class WeblinksTableWeblink extends JTable
 	{
 		if (JFilterInput::checkAttribute(array ('href', $this->url)))
 		{
-			$this->setError(JText::_('COM_WEBLINKS_ERR_TABLES_PROVIDE_URL'));
+			$this->setError(JText::_('COM_PROPERTIES_ERR_TABLES_PROVIDE_URL'));
 			return false;
 		}
 
 		// check for valid name
 		if (trim($this->title) == '')
 		{
-			$this->setError(JText::_('COM_WEBLINKS_ERR_TABLES_TITLE'));
+			$this->setError(JText::_('COM_PROPERTIES_ERR_TABLES_TITLE'));
 			return false;
 		}
 
 		// Check for existing name
 		$query = $this->_db->getQuery(true)
 			->select($this->_db->quoteName('id'))
-			->from($this->_db->quoteName('#__weblinks'))
+			->from($this->_db->quoteName('#__properties'))
 			->where($this->_db->quoteName('title') . ' = ' . $this->_db->quote($this->title))
 			->where($this->_db->quoteName('catid') . ' = ' . (int) $this->catid);
 		$this->_db->setQuery($query);
@@ -158,7 +158,7 @@ class WeblinksTableWeblink extends JTable
 		$xid = (int) $this->_db->loadResult();
 		if ($xid && $xid != (int) $this->id)
 		{
-			$this->setError(JText::_('COM_WEBLINKS_ERR_TABLES_NAME'));
+			$this->setError(JText::_('COM_PROPERTIES_ERR_TABLES_NAME'));
 			return false;
 		}
 

@@ -1,29 +1,29 @@
 <?php
 /**
- * @package     Joomla.Administrator
- * @subpackage  com_weblinks
+ * @package     Realeza
+ * @subpackage  com_properties
  *
- * @copyright   Copyright (C) 2005 - 2014 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2014 Emtags, All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die;
 
 /**
- * Methods supporting a list of weblink records.
+ * Methods supporting a list of property records.
  *
- * @package     Joomla.Administrator
- * @subpackage  com_weblinks
- * @since       1.6
+ * @package     Realeza
+ * @subpackage  com_properties
+ * @since       1.0
  */
-class WeblinksModelWeblinks extends JModelList
+class PropertiesModelProperties extends JModelList
 {
 	/**
 	 * Constructor.
 	 *
 	 * @param   array  An optional associative array of configuration settings.
 	 * @see     JController
-	 * @since   1.6
+	 * @since   1.0
 	 */
 	public function __construct($config = array())
 	{
@@ -58,7 +58,7 @@ class WeblinksModelWeblinks extends JModelList
 	 *
 	 * Note. Calling getState in this method will result in recursion.
 	 *
-	 * @since   1.6
+	 * @since   1.0
 	 */
 	protected function populateState($ordering = null, $direction = null)
 	{
@@ -82,7 +82,7 @@ class WeblinksModelWeblinks extends JModelList
 		$this->setState('filter.tag', $tag);
 
 		// Load the parameters.
-		$params = JComponentHelper::getParams('com_weblinks');
+		$params = JComponentHelper::getParams('com_properties');
 		$this->setState('params', $params);
 
 		// List state information.
@@ -98,7 +98,7 @@ class WeblinksModelWeblinks extends JModelList
 	 *
 	 * @param   string  $id    A prefix for the store id.
 	 * @return  string  A store id.
-	 * @since   1.6
+	 * @since   1.0
 	 */
 	protected function getStoreId($id = '')
 	{
@@ -116,7 +116,7 @@ class WeblinksModelWeblinks extends JModelList
 	 * Build an SQL query to load the list data.
 	 *
 	 * @return  JDatabaseQuery
-	 * @since   1.6
+	 * @since   1.0
 	 */
 	protected function getListQuery()
 	{
@@ -135,7 +135,7 @@ class WeblinksModelWeblinks extends JModelList
 					'a.language, a.publish_up, a.publish_down'
 			)
 		);
-		$query->from($db->quoteName('#__weblinks') . ' AS a');
+		$query->from($db->quoteName('#__properties') . ' AS a');
 
 		// Join over the language
 		$query->select('l.title AS language_title')
@@ -213,7 +213,7 @@ class WeblinksModelWeblinks extends JModelList
 				->join(
 					'LEFT', $db->quoteName('#__contentitem_tag_map', 'tagmap')
 					. ' ON ' . $db->quoteName('tagmap.content_item_id') . ' = ' . $db->quoteName('a.id')
-					. ' AND ' . $db->quoteName('tagmap.type_alias') . ' = ' . $db->quote('com_weblinks.weblink')
+					. ' AND ' . $db->quoteName('tagmap.type_alias') . ' = ' . $db->quote('com_properties.property')
 				);
 		}
 

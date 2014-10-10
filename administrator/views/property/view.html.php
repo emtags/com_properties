@@ -1,22 +1,22 @@
 <?php
 /**
- * @package     Joomla.Administrator
- * @subpackage  com_weblinks
+ * @package     Realeza
+ * @subpackage  com_properties
  *
- * @copyright   Copyright (C) 2005 - 2014 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2014 Emtags, All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die;
 
 /**
- * View to edit a weblink.
+ * View to edit a property.
  *
- * @package     Joomla.Administrator
- * @subpackage  com_weblinks
- * @since       1.5
+ * @package     Realeza
+ * @subpackage  com_properties
+ * @since       1.0
  */
-class WeblinksViewWeblink extends JViewLegacy
+class PropertiesViewProperty extends JViewLegacy
 {
 	protected $state;
 
@@ -47,7 +47,7 @@ class WeblinksViewWeblink extends JViewLegacy
 	/**
 	 * Add the page title and toolbar.
 	 *
-	 * @since   1.6
+	 * @since   1.0
 	 */
 	protected function addToolbar()
 	{
@@ -58,40 +58,40 @@ class WeblinksViewWeblink extends JViewLegacy
 		$checkedOut	= !($this->item->checked_out == 0 || $this->item->checked_out == $user->get('id'));
 
 		// Since we don't track these assets at the item level, use the category id.
-		$canDo		= JHelperContent::getActions('com_weblinks', 'category', $this->item->catid);
+		$canDo		= JHelperContent::getActions('com_properties', 'category', $this->item->catid);
 
-		JToolbarHelper::title(JText::_('COM_WEBLINKS_MANAGER_WEBLINK'), 'link weblinks');
+		JToolbarHelper::title(JText::_('COM_PROPERTIES_MANAGER_PROPERTY'), 'link properties');
 
 		// If not checked out, can save the item.
-		if (!$checkedOut && ($canDo->get('core.edit')||(count($user->getAuthorisedCategories('com_weblinks', 'core.create')))))
+		if (!$checkedOut && ($canDo->get('core.edit')||(count($user->getAuthorisedCategories('com_properties', 'core.create')))))
 		{
-			JToolbarHelper::apply('weblink.apply');
-			JToolbarHelper::save('weblink.save');
+			JToolbarHelper::apply('property.apply');
+			JToolbarHelper::save('property.save');
 		}
-		if (!$checkedOut && (count($user->getAuthorisedCategories('com_weblinks', 'core.create'))))
+		if (!$checkedOut && (count($user->getAuthorisedCategories('com_properties', 'core.create'))))
 		{
-			JToolbarHelper::save2new('weblink.save2new');
+			JToolbarHelper::save2new('property.save2new');
 		}
 		// If an existing item, can save to a copy.
-		if (!$isNew && (count($user->getAuthorisedCategories('com_weblinks', 'core.create')) > 0))
+		if (!$isNew && (count($user->getAuthorisedCategories('com_properties', 'core.create')) > 0))
 		{
-			JToolbarHelper::save2copy('weblink.save2copy');
+			JToolbarHelper::save2copy('property.save2copy');
 		}
 		if (empty($this->item->id))
 		{
-			JToolbarHelper::cancel('weblink.cancel');
+			JToolbarHelper::cancel('property.cancel');
 		}
 		else
 		{
 			if ($this->state->params->get('save_history', 0) && $user->authorise('core.edit'))
 			{
-				JToolbarHelper::versions('com_weblinks.weblink', $this->item->id);
+				JToolbarHelper::versions('com_properties.property', $this->item->id);
 			}
 
-			JToolbarHelper::cancel('weblink.cancel', 'JTOOLBAR_CLOSE');
+			JToolbarHelper::cancel('property.cancel', 'JTOOLBAR_CLOSE');
 		}
 
 		JToolbarHelper::divider();
-		JToolbarHelper::help('JHELP_COMPONENTS_WEBLINKS_LINKS_EDIT');
+		JToolbarHelper::help('JHELP_COMPONENTS_PROPERTIES_LINKS_EDIT');
 	}
 }

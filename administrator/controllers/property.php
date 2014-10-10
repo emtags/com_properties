@@ -1,22 +1,22 @@
 <?php
 /**
- * @package     Joomla.Administrator
- * @subpackage  com_weblinks
+ * @package     Realeza
+ * @subpackage  com_properties
  *
- * @copyright   Copyright (C) 2005 - 2014 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2014 Emtags, All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die;
 
 /**
- * Weblink controller class.
+ * Property controller class.
  *
- * @package     Joomla.Administrator
- * @subpackage  com_weblinks
- * @since       1.6
+ * @package     Realeza
+ * @subpackage  com_property
+ * @since       1.0
  */
-class WeblinksControllerWeblink extends JControllerForm
+class PropertiesControllerProperty extends JControllerForm
 {
 	/**
 	 * Method override to check if you can add a new record.
@@ -25,7 +25,7 @@ class WeblinksControllerWeblink extends JControllerForm
 	 *
 	 * @return  boolean
 	 *
-	 * @since   1.6
+	 * @since   1.0
 	 */
 	protected function allowAdd($data = array())
 	{
@@ -58,7 +58,7 @@ class WeblinksControllerWeblink extends JControllerForm
 	 *
 	 * @return  boolean
 	 *
-	 * @since   1.6
+	 * @since   1.0
 	 */
 	protected function allowEdit($data = array(), $key = 'id')
 	{
@@ -89,17 +89,17 @@ class WeblinksControllerWeblink extends JControllerForm
 	 *
 	 * @return  boolean   True if successful, false otherwise and internal error is set.
 	 *
-	 * @since   1.7
+	 * @since   1.0
 	 */
 	public function batch($model = null)
 	{
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
 		// Set the model
-		$model = $this->getModel('Weblink', '', array());
+		$model = $this->getModel('Property', '', array());
 
 		// Preset the redirect
-		$this->setRedirect(JRoute::_('index.php?option=com_weblinks&view=weblinks' . $this->getRedirectToListAppend(), false));
+		$this->setRedirect(JRoute::_('index.php?option=com_properties&view=properties' . $this->getRedirectToListAppend(), false));
 
 		return parent::batch($model);
 	}
@@ -120,7 +120,7 @@ class WeblinksControllerWeblink extends JControllerForm
 
 		if ($task == 'save')
 		{
-			$this->setRedirect(JRoute::_('index.php?option=com_weblinks&view=weblinks', false));
+			$this->setRedirect(JRoute::_('index.php?option=com_properties&view=properties', false));
 		}
 	}
 }

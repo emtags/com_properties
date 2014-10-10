@@ -1,22 +1,22 @@
 <?php
 /**
- * @package     Joomla.Administrator
- * @subpackage  com_weblinks
+ * @package     Realeza
+ * @subpackage  com_properties
  *
- * @copyright   Copyright (C) 2005 - 2014 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2014 Emtags, All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die;
 
 /**
- * View class for a list of weblinks.
+ * View class for a list of properties.
  *
- * @package     Joomla.Administrator
- * @subpackage  com_weblinks
- * @since       1.5
+ * @package     Emtags
+ * @subpackage  com_properties
+ * @since       1.0
  */
-class WeblinksViewWeblinks extends JViewLegacy
+class PropertiesViewProperties extends JViewLegacy
 {
 	protected $items;
 
@@ -35,7 +35,7 @@ class WeblinksViewWeblinks extends JViewLegacy
 		$this->items		= $this->get('Items');
 		$this->pagination	= $this->get('Pagination');
 
-		WeblinksHelper::addSubmenu('weblinks');
+		WeblinksHelper::addSubmenu('properties');
 
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
@@ -52,45 +52,45 @@ class WeblinksViewWeblinks extends JViewLegacy
 	/**
 	 * Add the page title and toolbar.
 	 *
-	 * @since   1.6
+	 * @since   1.0
 	 */
 	protected function addToolbar()
 	{
-		require_once JPATH_COMPONENT . '/helpers/weblinks.php';
+		require_once JPATH_COMPONENT . '/helpers/properties.php';
 
 		$state	= $this->get('State');
-		$canDo	= JHelperContent::getActions('com_weblinks', 'category', $state->get('filter.category_id'));
+		$canDo	= JHelperContent::getActions('com_properties', 'category', $state->get('filter.category_id'));
 		$user	= JFactory::getUser();
 
 		// Get the toolbar object instance
 		$bar = JToolBar::getInstance('toolbar');
 
-		JToolbarHelper::title(JText::_('COM_WEBLINKS_MANAGER_WEBLINKS'), 'link weblinks');
-		if (count($user->getAuthorisedCategories('com_weblinks', 'core.create')) > 0)
+		JToolbarHelper::title(JText::_('COM_PROPERTIES_MANAGER_PROPERTIES'), 'link properties');
+		if (count($user->getAuthorisedCategories('com_properties', 'core.create')) > 0)
 		{
-			JToolbarHelper::addNew('weblink.add');
+			JToolbarHelper::addNew('property.add');
 		}
 		if ($canDo->get('core.edit'))
 		{
-			JToolbarHelper::editList('weblink.edit');
+			JToolbarHelper::editList('property.edit');
 		}
 		if ($canDo->get('core.edit.state')) {
 
-			JToolbarHelper::publish('weblinks.publish', 'JTOOLBAR_PUBLISH', true);
-			JToolbarHelper::unpublish('weblinks.unpublish', 'JTOOLBAR_UNPUBLISH', true);
+			JToolbarHelper::publish('properties.publish', 'JTOOLBAR_PUBLISH', true);
+			JToolbarHelper::unpublish('properties.unpublish', 'JTOOLBAR_UNPUBLISH', true);
 
-			JToolbarHelper::archiveList('weblinks.archive');
-			JToolbarHelper::checkin('weblinks.checkin');
+			JToolbarHelper::archiveList('properties.archive');
+			JToolbarHelper::checkin('properties.checkin');
 		}
 		if ($state->get('filter.state') == -2 && $canDo->get('core.delete'))
 		{
-			JToolbarHelper::deleteList('', 'weblinks.delete', 'JTOOLBAR_EMPTY_TRASH');
+			JToolbarHelper::deleteList('', 'properties.delete', 'JTOOLBAR_EMPTY_TRASH');
 		} elseif ($canDo->get('core.edit.state'))
 		{
-			JToolbarHelper::trash('weblinks.trash');
+			JToolbarHelper::trash('properties.trash');
 		}
 		// Add a batch button
-		if ($user->authorise('core.create', 'com_weblinks') && $user->authorise('core.edit', 'com_weblinks') && $user->authorise('core.edit.state', 'com_weblinks'))
+		if ($user->authorise('core.create', 'com_properties') && $user->authorise('core.edit', 'com_properties') && $user->authorise('core.edit.state', 'com_properties'))
 		{
 			JHtml::_('bootstrap.modal', 'collapseModal');
 			$title = JText::_('JTOOLBAR_BATCH');
@@ -101,14 +101,14 @@ class WeblinksViewWeblinks extends JViewLegacy
 			$dhtml = $layout->render(array('title' => $title));
 			$bar->appendButton('Custom', $dhtml, 'batch');
 		}
-		if ($user->authorise('core.admin', 'com_weblinks'))
+		if ($user->authorise('core.admin', 'com_properties'))
 		{
-			JToolbarHelper::preferences('com_weblinks');
+			JToolbarHelper::preferences('com_properties');
 		}
 
-		JToolbarHelper::help('JHELP_COMPONENTS_WEBLINKS_LINKS');
+		JToolbarHelper::help('JHELP_COMPONENTS_PROPERTIES_LINKS');
 
-		JHtmlSidebar::setAction('index.php?option=com_weblinks&view=weblinks');
+		JHtmlSidebar::setAction('index.php?option=com_properties&view=properties');
 
 		JHtmlSidebar::addFilter(
 			JText::_('JOPTION_SELECT_PUBLISHED'),
@@ -119,7 +119,7 @@ class WeblinksViewWeblinks extends JViewLegacy
 		JHtmlSidebar::addFilter(
 			JText::_('JOPTION_SELECT_CATEGORY'),
 			'filter_category_id',
-			JHtml::_('select.options', JHtml::_('category.options', 'com_weblinks'), 'value', 'text', $this->state->get('filter.category_id'))
+			JHtml::_('select.options', JHtml::_('category.options', 'com_properties'), 'value', 'text', $this->state->get('filter.category_id'))
 		);
 
 		JHtmlSidebar::addFilter(
@@ -147,7 +147,7 @@ class WeblinksViewWeblinks extends JViewLegacy
 	 *
 	 * @return  array  Array containing the field name to sort by as the key and display text as value
 	 *
-	 * @since   3.0
+	 * @since   1.0
 	 */
 	protected function getSortFields()
 	{

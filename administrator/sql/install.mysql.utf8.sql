@@ -31,6 +31,26 @@ CREATE TABLE IF NOT EXISTS `#__properties` (
   `publish_up` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `publish_down` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `images` text NOT NULL,
+  -- --------------------------------------------------
+  -- Properties
+  -- --------------------------------------------------
+
+  -- Geolocation
+  `formated_address` varchar(250) NOT NULL DEFAULT '',
+  `latitude` float NOT NULL DEFAULT 0,
+  `longitude` float NOT NULL DEFAULT 0,
+  `route` varchar(250) NOT NULL DEFAULT '',
+  `street_number` varchar(250) NOT NULL DEFAULT '',
+  `street_address` varchar(250) NOT NULL DEFAULT '',
+  `postal_code` varchar(250) NOT NULL DEFAULT '',
+  `country` varchar(250) NOT NULL DEFAULT '',
+  `locality` varchar(250) NOT NULL DEFAULT '',
+  `sublocality` varchar(250) NOT NULL DEFAULT '',
+  `neighborhood` varchar(250) NOT NULL DEFAULT '',
+  `geo_state` varchar(250) NOT NULL DEFAULT '',
+  `administrative_area_level_1` varchar(250) NOT NULL DEFAULT '',
+  `administrative_area_level_2` varchar(250) NOT NULL DEFAULT '',
+  `administrative_area_level_3` varchar(250) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `idx_access` (`access`),
   KEY `idx_checkout` (`checked_out`),

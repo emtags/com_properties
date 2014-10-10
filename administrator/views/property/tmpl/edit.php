@@ -46,6 +46,17 @@ JHtml::_('formbehavior.chosen', 'select');
 		</div>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
 
+		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'geolocation', JText::_('COM_PROPERTIES_FIELDSET_GEOLOCATION_OPTIONS', true)); ?>
+			<div class="row-fluid">
+				<div class="span6">
+					<?php echo $this->form->getControlGroup('geolocation'); ?>
+					<?php foreach ($this->form->getGroup('geolocation') as $field) : ?>
+						<?php echo $field->getControlGroup(); ?>
+					<?php endforeach; ?>
+				</div>
+			</div>
+		<?php echo JHtml::_('bootstrap.endTab'); ?>
+
 		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'images', JText::_('JGLOBAL_FIELDSET_IMAGE_OPTIONS', true)); ?>
 			<div class="row-fluid">
 				<div class="span6">

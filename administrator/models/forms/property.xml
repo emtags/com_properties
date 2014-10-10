@@ -22,7 +22,6 @@
 		>
 		</field>
 
-
 		<field name="url" type="url"
 			class="span12"
 			filter="url"
@@ -239,6 +238,58 @@
 				label="COM_PROPERTIES_FIELD_IMAGE_CAPTION_LABEL"
 				description="COM_PROPERTIES_FIELD_IMAGE_CAPTION_DESC"
 				size="20" />
+		</fieldset>
+	</fields>
+
+	<fields name="geolocation">
+		<fieldset name="geolocation" label="COM_PROPERTIES_FIELDSET_GEOLOCATION_OPTIONS">
+			<!-- Geolocation -->
+			<field name="formated_address" type="text"
+				class="span8"
+				size="40" label="COM_PROPERTIES_FIELD_FORMATED_ADDRESS_LABEL"
+				description="COM_PROPERTIES_FIELD_FORMATED_ADDRESS_DESC" required="true" />
+			<field name="latitude" type="text"
+				class="span6"
+				size="40" label="COM_PROPERTIES_FIELD_LATITUDE_LABEL"
+				description="COM_PROPERTIES_FIELD_LATITUDE_DESC" required="true" />
+			<field name="longitude" type="text"
+				class="span6"
+				size="40" label="COM_PROPERTIES_FIELD_LONGITUDE_LABEL"
+				description="COM_PROPERTIES_FIELD_LONGITUDE_DESC" required="true" />
+
+			<field name="postal_code" type="text"
+				class="span6"
+				size="40" label="COM_PROPERTIES_FIELD_POSTAL_CODE_LABEL"
+				description="COM_PROPERTIES_FIELD_POSTAL_CODE_DESC" required="true" />
+
+			<field name="locality" type="text"
+				class="span6"
+				size="40" label="COM_PROPERTIES_FIELD_LOCALITY_LABEL"
+				description="COM_PROPERTIES_FIELD_LOCALITY_DESC" required="true" />
+
+			<field name="sublocality" type="text"
+				class="span6"
+				size="40" label="COM_PROPERTIES_FIELD_SUBLOCALITY_LABEL"
+				description="COM_PROPERTIES_FIELD_SUBLOCALITY_DESC" required="true" />
+
+			<field name="neighborhood" type="text"
+				class="span6"
+				size="40" label="COM_PROPERTIES_FIELD_NEIGHBORHOOD_LABEL"
+				description="COM_PROPERTIES_FIELD_NEIGHBORHOOD_DESC" required="true" />
+
+			<field name="geo_state" type="text"
+				class="span6"
+				size="40" label="COM_PROPERTIES_FIELD_GEO_STATE_LABEL"
+				description="COM_PROPERTIES_FIELD_GEO_STATE_DESC" required="true" />
+
+			<field name="route" type="hidden" default="" />
+			<field name="street_number" type="hidden" default="" />
+			<field name="street_address" type="hidden" default="" />
+			<field name="country" type="hidden" default="" />
+			<field name="administrative_area_level_1" type="hidden" default="" />
+			<field name="administrative_area_level_2" type="hidden" default="" />
+			<field name="administrative_area_level_3" type="hidden" default="" />
+
 		</fieldset>
 	</fields>
 

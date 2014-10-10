@@ -14,6 +14,19 @@ JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
 JHtml::_('behavior.formvalidation');
 JHtml::_('formbehavior.chosen', 'select');
 
+$document = JFactory::getDocument();
+$document->addScript('http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places');
+$document->addScript(JUri::base() . 'components/com_properties/assets/js/jquery.geocomplete.min.js');
+
+$document->addScriptDeclaration('
+	jQuery(document).ready(function (){
+		jQuery("#jform_geolocation_formated_address").geocomplete({
+			//details: "form",
+			detailsAttribute: "class"
+		});
+	});
+');
+
 ?>
 <script type="text/javascript">
 	Joomla.submitbutton = function(task)

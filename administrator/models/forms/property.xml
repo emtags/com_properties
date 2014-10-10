@@ -246,14 +246,17 @@
 			<!-- Geolocation -->
 			<field name="formated_address" type="text"
 				class="span8"
+				geodata="formated_address"
 				size="40" label="COM_PROPERTIES_FIELD_FORMATED_ADDRESS_LABEL"
 				description="COM_PROPERTIES_FIELD_FORMATED_ADDRESS_DESC" required="true" />
 			<field name="latitude" type="text"
-				class="span6"
+				class="span6 latitude"
+				geodata="latitude"
 				size="40" label="COM_PROPERTIES_FIELD_LATITUDE_LABEL"
 				description="COM_PROPERTIES_FIELD_LATITUDE_DESC" required="true" />
 			<field name="longitude" type="text"
-				class="span6"
+				class="span6 longitude"
+				geo-data="longitude"
 				size="40" label="COM_PROPERTIES_FIELD_LONGITUDE_LABEL"
 				description="COM_PROPERTIES_FIELD_LONGITUDE_DESC" required="true" />
 

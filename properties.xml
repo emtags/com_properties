@@ -38,7 +38,7 @@
 		<language tag="en-GB">language/en-GB.com_properties.ini</language>
 	</languages>
 	<administration>
-		<menu img="class:weblinks">com_properties</menu>
+		<menu img="class:properties">com_properties</menu>
 		<submenu>
 			<!--
 				Note that all & must be escaped to &amp; for the file to be valid

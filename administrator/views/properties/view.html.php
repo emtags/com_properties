@@ -35,7 +35,7 @@ class PropertiesViewProperties extends JViewLegacy
 		$this->items		= $this->get('Items');
 		$this->pagination	= $this->get('Pagination');
 
-		WeblinksHelper::addSubmenu('properties');
+		PropertiesHelper::addSubmenu('properties');
 
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))

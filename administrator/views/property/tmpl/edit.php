@@ -20,7 +20,7 @@ $document->addScript(JUri::base() . 'components/com_properties/assets/js/jquery.
 
 $document->addScriptDeclaration('
 	jQuery(document).ready(function (){
-		jQuery("#jform_geolocation_formated_address").geocomplete({
+		jQuery("#jform_formated_address").geocomplete({
 			details: "form",
 			detailsAttribute: "data-geo"
 		});
@@ -62,10 +62,21 @@ $document->addScriptDeclaration('
 		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'geolocation', JText::_('COM_PROPERTIES_FIELDSET_GEOLOCATION_OPTIONS', true)); ?>
 			<div class="row-fluid">
 				<div class="span6">
-					<?php echo $this->form->getControlGroup('geolocation'); ?>
-					<?php foreach ($this->form->getGroup('geolocation') as $field) : ?>
-						<?php echo $field->getControlGroup(); ?>
-					<?php endforeach; ?>
+					<?php echo $this->form->getControlGroup('formated_address'); ?>
+					<?php echo $this->form->getControlGroup('latitude'); ?>
+					<?php echo $this->form->getControlGroup('longitude'); ?>
+					<?php echo $this->form->getControlGroup('postal_code'); ?>
+					<?php echo $this->form->getControlGroup('neighborhood'); ?>
+					<?php echo $this->form->getControlGroup('administrative_area_level_1'); ?>
+					<?php echo $this->form->getControlGroup('locality'); ?>
+					<?php echo $this->form->getControlGroup('sublocality'); ?>
+					<?php echo $this->form->getControlGroup('geo_state'); ?>
+					<?php echo $this->form->getControlGroup('route'); ?>
+					<?php echo $this->form->getControlGroup('street_number'); ?>
+					<?php echo $this->form->getControlGroup('street_address'); ?>
+					<?php echo $this->form->getControlGroup('country'); ?>
+					<?php echo $this->form->getControlGroup('administrative_area_level_2'); ?>
+					<?php echo $this->form->getControlGroup('administrative_area_level_3'); ?>
 				</div>
 			</div>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>

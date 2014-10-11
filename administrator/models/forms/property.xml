@@ -242,45 +242,51 @@
 	</fields>
 
 	<fields name="geolocation">
-		<fieldset name="geolocation" label="COM_PROPERTIES_FIELDSET_GEOLOCATION_OPTIONS">
+		<fieldset name="geolocation" label="COM_PROPERTIES_FIELDSET_GEOLOCATION_OPTIONS"
+			addfieldpath="/administrator/components/com_properties/models/fields" >
 			<!-- Geolocation -->
-			<field name="formated_address" type="text"
+			<field name="formated_address" type="geotext"
 				class="span8"
-				geodata="formated_address"
+				geo-data="formated_address"
 				size="40" label="COM_PROPERTIES_FIELD_FORMATED_ADDRESS_LABEL"
 				description="COM_PROPERTIES_FIELD_FORMATED_ADDRESS_DESC" required="true" />
-			<field name="latitude" type="text"
+			<field name="latitude" type="geotext"
 				class="span6 latitude"
-				geodata="latitude"
+				geo-data="lat"
 				size="40" label="COM_PROPERTIES_FIELD_LATITUDE_LABEL"
 				description="COM_PROPERTIES_FIELD_LATITUDE_DESC" required="true" />
-			<field name="longitude" type="text"
+			<field name="longitude" type="geotext"
 				class="span6 longitude"
-				geo-data="longitude"
+				geo-data="lng"
 				size="40" label="COM_PROPERTIES_FIELD_LONGITUDE_LABEL"
 				description="COM_PROPERTIES_FIELD_LONGITUDE_DESC" required="true" />
 
-			<field name="postal_code" type="text"
+			<field name="postal_code" type="geotext"
+				geo-data="postal_code"
 				class="span6"
 				size="40" label="COM_PROPERTIES_FIELD_POSTAL_CODE_LABEL"
 				description="COM_PROPERTIES_FIELD_POSTAL_CODE_DESC" required="true" />
 
-			<field name="locality" type="text"
+			<field name="locality" type="geotext"
+				geo-data="locality"
 				class="span6"
 				size="40" label="COM_PROPERTIES_FIELD_LOCALITY_LABEL"
 				description="COM_PROPERTIES_FIELD_LOCALITY_DESC" required="true" />
 
-			<field name="sublocality" type="text"
+			<field name="sublocality" type="geotext"
+				geo-data="sublocality"
 				class="span6"
 				size="40" label="COM_PROPERTIES_FIELD_SUBLOCALITY_LABEL"
 				description="COM_PROPERTIES_FIELD_SUBLOCALITY_DESC" required="true" />
 
-			<field name="neighborhood" type="text"
+			<field name="neighborhood" type="geotext"
+				geo-data="neighborhood"
 				class="span6"
 				size="40" label="COM_PROPERTIES_FIELD_NEIGHBORHOOD_LABEL"
 				description="COM_PROPERTIES_FIELD_NEIGHBORHOOD_DESC" required="true" />
 
-			<field name="geo_state" type="text"
+			<field name="geo_state" type="geotext"
+				geo-data="state"
 				class="span6"
 				size="40" label="COM_PROPERTIES_FIELD_GEO_STATE_LABEL"
 				description="COM_PROPERTIES_FIELD_GEO_STATE_DESC" required="true" />

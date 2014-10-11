@@ -21,8 +21,8 @@ $document->addScript(JUri::base() . 'components/com_properties/assets/js/jquery.
 $document->addScriptDeclaration('
 	jQuery(document).ready(function (){
 		jQuery("#jform_geolocation_formated_address").geocomplete({
-			//details: "form",
-			detailsAttribute: "class"
+			details: "form",
+			detailsAttribute: "data-geo"
 		});
 	});
 ');
